@@ -1,0 +1,20 @@
+---
+layout: layout.njk
+permalink: /
+---
+
+{% for item in sanityData.homepage[0].MainMenu %}
+<div>{{ item | resolveRef(sanityData) }}</div>
+{% endfor %}
+
+
+{# <div>{{ sanityData.homepage[0].title }}</div> #}
+
+
+{% for item in sanityData.box %}
+	<h2>{{ item.title }}</h2>
+	<img src="{{ item.image[0] | resolveImage }}" alt="">
+	<div>{{ item.body | toHtml | safe }}</div>
+{% endfor %}
+
+<script src="/assets/dist/js/home/scripts.js"></script>

@@ -1,0 +1,10 @@
+---
+layout: layout.njk
+pagination:
+    data: sanityData.page
+    size: 1
+    alias: the_page
+permalink: "{{ the_page.slug.current | slug }}.html"
+---
+
+<h1>{{ the_page.title }}</h1>

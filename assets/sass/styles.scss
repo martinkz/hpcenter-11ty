@@ -1,0 +1,36 @@
+@use "normalize";
+@use "variables";
+
+body {
+	font-family: monospace, sans-serif;
+	background-color: var(--background-color);
+}
+
+.content {
+	padding: 1.5rem;
+	max-width: var(--page-width);
+	margin: 0 auto;
+}
+
+h1 {
+	padding-bottom: 1rem;
+}
+
+p,
+ul {
+	font-size: 1rem;
+	margin-bottom: 1rem;
+}
+
+ul {
+	padding-inline-start: 1rem;
+
+	li {
+		list-style: circle;
+	}
+}
+
+.by {
+	font-size: 0.8rem;
+	color: var(--byline-color);
+}
