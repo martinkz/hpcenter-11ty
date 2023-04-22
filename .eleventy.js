@@ -1,6 +1,6 @@
 const toHTML = require("@portabletext/to-html").toHTML
 const imageUrlBuilder = require("@sanity/image-url")
-const sanityData = require("./_data/sanityData")
+// const sanityData = require("./_data/sanityData")
 const createClient = require("@sanity/client").createClient
 require("dotenv").config()
 
@@ -48,14 +48,26 @@ module.exports = function (eleventyConfig) {
 		return builder.image(image.asset)
 	})
 
-	eleventyConfig.addFilter("resolveRef", function (refData, allData) {
-		console.log(allData)
-		for (const item of Object.values(refData)) {
+	// Find the _ref property within a ref object returned by a Sanity reference field
+	function findSanityRef(refObject, data) {
+		for (const item of Object.values(refObject)) {
 			if (item._ref) {
 				return item._ref
 			}
 		}
-		// return data._ref
+	}
+
+	eleventyConfig.addFilter("resolveRef", function (refObject, allData) {
+		const ref = findSanityRef(refObject, allData)
+
+		for (const dataType of Object.values(allData)) {
+			for (const item of dataType) {
+				if (item._id === ref) {
+					// console.log(item)
+					return item
+				}
+			}
+		}
 	})
 
 	return {

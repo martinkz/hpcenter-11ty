@@ -3,18 +3,24 @@ layout: layout.njk
 permalink: /
 ---
 
-{% for item in sanityData.homepage[0].MainMenu %}
-<div>{{ item | resolveRef(sanityData) }}</div>
-{% endfor %}
+{% include "header.njk" %}
 
+<div class="hero">
+	<img class="hero-img" src="assets/img/hero.jpg" alt="">
+</div>
 
-{# <div>{{ sanityData.homepage[0].title }}</div> #}
-
-
-{% for item in sanityData.box %}
-	<h2>{{ item.title }}</h2>
-	<img src="{{ item.image[0] | resolveImage }}" alt="">
-	<div>{{ item.body | toHtml | safe }}</div>
-{% endfor %}
+<div class="box-grid">
+	{% for item in sanityData.box %}
+	<div class="grid-row">
+		<div class="grid-col">
+			<h2>{{ item.title }}</h2>
+			<div>{{ item.body | toHtml | safe }}</div>
+		</div>
+		<div class="grid-col">
+			<img class="bgimage" src="{{ item.image[0] | resolveImage }}" alt="">
+		</div>
+	</div>
+	{% endfor %}
+</div>
 
 <script src="/assets/dist/js/home/scripts.js"></script>

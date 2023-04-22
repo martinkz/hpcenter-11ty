@@ -7,4 +7,8 @@ pagination:
 permalink: "{{ the_page.slug.current | slug }}.html"
 ---
 
+{% include "header.njk" %}
+
 <h1>{{ the_page.title }}</h1>
+
+{{ the_page.body | toHtml | safe }}

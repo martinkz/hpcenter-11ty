@@ -1,36 +1,64 @@
 @use "normalize";
-@use "variables";
+@use "variables" as *;
+@use "generic";
+@use "grid" as *;
+@use "utilities";
 
-body {
-	font-family: monospace, sans-serif;
-	background-color: var(--background-color);
-}
-
-.content {
-	padding: 1.5rem;
+.page {
 	max-width: var(--page-width);
 	margin: 0 auto;
 }
 
-h1 {
-	padding-bottom: 1rem;
-}
-
-p,
-ul {
-	font-size: 1rem;
-	margin-bottom: 1rem;
-}
-
-ul {
-	padding-inline-start: 1rem;
-
-	li {
-		list-style: circle;
+.top-header {
+	@media(min-width: $bp-small) {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
 	}
 }
 
-.by {
-	font-size: 0.8rem;
-	color: var(--byline-color);
+.main-nav {
+	ul {
+		@media(min-width: $bp-small) {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 1.5rem;
+		}
+
+		font-family: var(--title-font);
+		font-size: 1.2rem;
+		text-align: center;
+
+		li {
+			padding: 0.4rem 0;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.logo {
+	width: 100%;
+	max-width: 350px;
+	margin: auto;
+
+	@media(min-width: $bp-small) {
+		margin: 0;
+	}
+}
+
+.btn {
+	display: inline-block;
+	background: #ffdf00;
+	border-radius: 55px;
+	padding: 0.7rem 2rem;
+}
+
+.hero-img {
+	width: 100%;
 }

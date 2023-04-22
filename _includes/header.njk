@@ -1,0 +1,21 @@
+{% set home = sanityData.homepage[0] %}
+
+<header class="top-header u-pad-md">
+  <h1 class="u-sr-only">HP Center Website</h1>
+  <a href="/">
+    <img class="logo" src="assets/img/logo.png" alt="logo" />
+  </a>
+  <nav class="main-nav">
+    <ul>
+      {% for item in home.MainMenu %} 
+        {% set refObj = item.page_ref.__expandedRef[0] %}
+        <li>
+          <a href="/{{ refObj.slug.current }}">{{ item.label }}</a>
+        </li>
+      {% endfor %}
+        <li>
+          <a href="" class="btn">Donate</a>
+        </li>
+    </ul>
+  </nav>
+</header>
