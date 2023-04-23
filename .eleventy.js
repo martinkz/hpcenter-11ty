@@ -45,7 +45,12 @@ module.exports = function (eleventyConfig) {
 	})
 
 	eleventyConfig.addFilter("resolveImage", function (image) {
-		return builder.image(image.asset)
+		console.log(image.crop)
+		if (image.crop) {
+			return builder.image(image.asset).crop("left")
+		} else {
+			return builder.image(image.asset)
+		}
 	})
 
 	// Find the _ref property within a ref object returned by a Sanity reference field

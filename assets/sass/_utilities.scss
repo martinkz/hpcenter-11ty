@@ -13,3 +13,13 @@
   white-space: nowrap;
   border-width: 0;
 }
+
+.u-caps {
+  text-transform: uppercase;
+}
+
+.u-copy-body {
+  :first-child {
+    margin-top: 0;
+  }
+}

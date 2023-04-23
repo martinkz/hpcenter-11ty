@@ -49,7 +49,6 @@ function splitByType(data) {
 
 module.exports = async function () {
 	let sanityData = await getSanityData(PROJECT_URL)
-	// console.log(sanityData)
 	expandRefs(sanityData)
 	// console.log(splitByType(sanityData))
 	return splitByType(sanityData)

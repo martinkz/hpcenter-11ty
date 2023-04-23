@@ -21,6 +21,12 @@ $grid-bp: 1001px;
   }
 }
 
+.col-image {
+  @media(min-width: $grid-bp) {
+    min-height: 500px;
+  }
+}
+
 .bgimage {
   @media(min-width: $grid-bp) {
     position: absolute;
