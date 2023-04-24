@@ -14,7 +14,7 @@ permalink: /
 <div class="box-grid">
 	{% for item in sanityData.box %}
 	<div class="grid-row">
-		<div class="grid-col u-copy-body" {% if item.color.hex %} style="background: {{ item.color.hex }}" {% endif %}>
+		<div class="grid-col u-copy-body" style="{{ item | setBoxCopyStyle }}">
 			<h2 class="u-caps">{{ item.title }}</h2>
 			<div>{{ item.body | toHtml | safe }}</div>
 		</div>

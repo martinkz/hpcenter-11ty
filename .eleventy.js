@@ -1,7 +1,7 @@
 const toHTML = require("@portabletext/to-html").toHTML
 const imageUrlBuilder = require("@sanity/image-url")
-// const sanityData = require("./_data/sanityData")
 const createClient = require("@sanity/client").createClient
+const contrast = require("./utility/colorContrast")
 require("dotenv").config()
 
 module.exports = function (eleventyConfig) {
@@ -46,6 +46,7 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addFilter("resolveImage", function (image) {
 		console.log(image.crop)
+		return builder.image(image.asset)
 		if (image.crop) {
 			return builder.image(image.asset).crop("left")
 		} else {
@@ -53,27 +54,41 @@ module.exports = function (eleventyConfig) {
 		}
 	})
 
-	// Find the _ref property within a ref object returned by a Sanity reference field
-	function findSanityRef(refObject, data) {
-		for (const item of Object.values(refObject)) {
-			if (item._ref) {
-				return item._ref
+	eleventyConfig.addFilter("setBoxCopyStyle", function (item) {
+		if (item.color?.hex) {
+			let style = `background: ${item.color.hex}; `
+			let lowContrast =
+				contrast(item.color.hex, "#000000") <
+				contrast(item.color.hex, "#ffffff")
+			if (lowContrast) {
+				style += `color: #ffffff;`
 			}
+			return style
 		}
-	}
-
-	eleventyConfig.addFilter("resolveRef", function (refObject, allData) {
-		const ref = findSanityRef(refObject, allData)
-
-		for (const dataType of Object.values(allData)) {
-			for (const item of dataType) {
-				if (item._id === ref) {
-					// console.log(item)
-					return item
-				}
-			}
-		}
+		return ""
 	})
+
+	// Find the _ref property within a ref object returned by a Sanity reference field
+	// function findSanityRef(refObject, data) {
+	// 	for (const item of Object.values(refObject)) {
+	// 		if (item._ref) {
+	// 			return item._ref
+	// 		}
+	// 	}
+	// }
+
+	// eleventyConfig.addFilter("resolveRef", function (refObject, allData) {
+	// 	const ref = findSanityRef(refObject, allData)
+
+	// 	for (const dataType of Object.values(allData)) {
+	// 		for (const item of dataType) {
+	// 			if (item._id === ref) {
+	// 				// console.log(item)
+	// 				return item
+	// 			}
+	// 		}
+	// 	}
+	// })
 
 	return {
 		passthroughFileCopy: true,
