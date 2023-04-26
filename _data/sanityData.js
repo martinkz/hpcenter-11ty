@@ -47,9 +47,14 @@ function splitByType(data) {
 	return result
 }
 
+function sortBoxItems(data) {
+	return data.box.sort((a, b) => a.orderRank.localeCompare(b.orderRank))
+}
+
 module.exports = async function () {
 	let sanityData = await getSanityData(PROJECT_URL)
 	expandRefs(sanityData)
-	// console.log(splitByType(sanityData))
-	return splitByType(sanityData)
+	sanityData = splitByType(sanityData)
+	sortBoxItems(sanityData)
+	return sanityData
 }
