@@ -4,7 +4,9 @@
   base = ""
   publish = "_site"
   command = "npm run build-prod"
-  environment = { NODE_VERSION = "14.7.0", NPM_VERSION = "7.5.2" }
+
+[build.environment]
+NODE_VERSION = "18.16.0"
 
 [context.deploy-preview]
   command = "npm run build-prod"
