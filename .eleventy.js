@@ -45,13 +45,13 @@ module.exports = function (eleventyConfig) {
 	})
 
 	eleventyConfig.addFilter("resolveImage", function (image) {
-		console.log(image.crop)
-		return builder.image(image.asset)
-		if (image.crop) {
-			return builder.image(image.asset).crop("left")
-		} else {
-			return builder.image(image.asset)
-		}
+		// console.log(image.crop)
+		return image?.asset ? builder.image(image.asset) : ""
+		// if (image.crop) {
+		// 	return builder.image(image.asset).crop("left")
+		// } else {
+		// 	return builder.image(image.asset)
+		// }
 	})
 
 	eleventyConfig.addFilter("setBoxCopyStyle", function (item) {
@@ -59,7 +59,7 @@ module.exports = function (eleventyConfig) {
 			let style = `background: ${item.color.hex}; `
 			let lowContrast =
 				contrast(item.color.hex, "#000000") <
-				contrast(item.color.hex, "#ffffff")
+				contrast(item.color.hex, "#ffffff") + 5 // +5 is a manual tweak to favour white text on dark backgrounds
 			if (lowContrast) {
 				style += `color: #ffffff;`
 			}

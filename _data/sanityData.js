@@ -56,5 +56,6 @@ module.exports = async function () {
 	expandRefs(sanityData)
 	sanityData = splitByType(sanityData)
 	sortBoxItems(sanityData)
+	// console.log(sanityData.homepage[0].boxes)
 	return sanityData
 }

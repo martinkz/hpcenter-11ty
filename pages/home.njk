@@ -8,11 +8,14 @@ permalink: /
 {% set home = sanityData.homepage[0] %}
 
 <div class="hero">
-	<img class="hero-img" src="{{ home.hero_image | resolveImage }}" alt="">
+	{# <img class="hero-img" src="{{ home.hero_image | resolveImage }}" alt="" 
+	style="aspect-ratio: {{ home.hero_image.asset.__expandedRef[0].metadata
+	.dimensions.aspectRatio }}"> #}
+	<video class="hero-video" src="assets/img/dohi_hero3.mp4" muted playsinline autoplay loop></video>
 </div>
 
 <div class="box-grid">
-	{% for item in sanityData.box %}
+	{% for item in home.boxes %}
 	<div class="grid-row">
 		<div class="grid-col u-copy-body" style="{{ item | setBoxCopyStyle }}">
 			<h2 class="u-caps">{{ item.title }}</h2>

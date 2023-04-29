@@ -15,6 +15,7 @@ $grid-bp: 1001px;
   position: relative;
   align-self: stretch;
   padding: 3rem 4rem;
+  padding: clamp(20px, 4vw, 120px) clamp(30px, 5vw, 120px);
 
   img {
     width: 100%;
@@ -23,7 +24,7 @@ $grid-bp: 1001px;
 
 .col-image {
   @media(min-width: $grid-bp) {
-    min-height: 500px;
+    min-height: 400px;
   }
 }
 

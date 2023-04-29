@@ -9,6 +9,23 @@ permalink: "{{ the_page.slug.current | slug }}.html"
 
 {% include "header.njk" %}
 
-<h1>{{ the_page.title }}</h1>
+<div class="page-hero">
+    <img src="assets/img/page.jpg" alt="">
+    {# <div class="page-wrap"> #}
+        <h1 class="page-title">{{ the_page.title }}</h1>
+    {# </div> #}
+</div>
 
-{{ the_page.body | toHtml | safe }}
+<div class="page-wrap">
+    {% if the_page._id == "24650ce2-d6cf-474d-8123-70deb22d1dd6" %}
+        <div class="carousel content-inline">
+            {% for i in range(1, 6) -%}
+                <img data-idx="{{ i }}" class="bgimage" src="assets/img/carousel/{{ i }}.jpg" alt="">
+            {%- endfor %}
+
+        </div>
+    {% endif %}
+    {{ the_page.body | toHtml | safe }}
+</div>
+
+<script src="/assets/dist/js/page/scripts.js"></script>
